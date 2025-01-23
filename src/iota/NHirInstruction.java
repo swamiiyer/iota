@@ -403,8 +403,8 @@ class NHirJump extends NHirInstruction {
         }
         if (falseBlock == null) {
             // Unconditional jump.
-            lir = new NLirJump(block, NControlFlowGraph.lirId++, hir2lir.get(mnemonic), null, null, trueBlock, null,
-                    false);
+            lir = new NLirJump(block, NControlFlowGraph.lirId++, hir2lir.get(mnemonic), null, null, 
+                               trueBlock, null, false);
         } else {
             // Conditional jump.
             NLirInstruction lhsIns = block.cfg.hirMap.get(lhs).toLir();
@@ -569,7 +569,8 @@ class NHirReturn extends NHirInstruction {
             lir = new NLirCopy(block, NControlFlowGraph.lirId++, regInfo[RV], result.write);
             block.lir.add(lir);
         }
-        lir = new NLirJump(block, NControlFlowGraph.lirId++, hir2lir.get(mnemonic), null, null, null, null, true);
+        lir = new NLirJump(block, NControlFlowGraph.lirId++, hir2lir.get(mnemonic), null, null, null, 
+                           null, true);
         block.lir.add(lir);
         return lir;
     }

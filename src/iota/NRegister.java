@@ -168,12 +168,15 @@ class NPhysicalRegister extends NRegister {
     /**
      * Maps register number to the register's representation.
      */
-    public static final NPhysicalRegister[] regInfo = {new NPhysicalRegister(R0, "r0"), new NPhysicalRegister(R1, "r1"),
-            new NPhysicalRegister(R2, "r2"), new NPhysicalRegister(R3, "r3"), new NPhysicalRegister(R4, "r4"),
-            new NPhysicalRegister(R5, "r5"), new NPhysicalRegister(R6, "r6"), new NPhysicalRegister(R7, "r7"),
-            new NPhysicalRegister(R8, "r8"), new NPhysicalRegister(R9, "r9"), new NPhysicalRegister(R10, "r10"),
-            new NPhysicalRegister(R11, "r11"), new NPhysicalRegister(RA, "r12"), new NPhysicalRegister(RV, "r13"),
-            new NPhysicalRegister(FP, "r14"), new NPhysicalRegister(SP, "r15")};
+    public static final NPhysicalRegister[] regInfo = {new NPhysicalRegister(R0, "r0"), 
+            new NPhysicalRegister(R1, "r1"), new NPhysicalRegister(R2, "r2"), 
+            new NPhysicalRegister(R3, "r3"), new NPhysicalRegister(R4, "r4"), 
+            new NPhysicalRegister(R5, "r5"), new NPhysicalRegister(R6, "r6"), 
+            new NPhysicalRegister(R7, "r7"), new NPhysicalRegister(R8, "r8"), 
+            new NPhysicalRegister(R9, "r9"), new NPhysicalRegister(R10, "r10"), 
+            new NPhysicalRegister(R11, "r11"), new NPhysicalRegister(RA, "r12"), 
+            new NPhysicalRegister(RV, "r13"), new NPhysicalRegister(FP, "r14"), 
+            new NPhysicalRegister(SP, "r15")};
 
     /**
      * Constructs an NPhysicalRegister object.

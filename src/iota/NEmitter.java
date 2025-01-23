@@ -57,8 +57,8 @@ public class NEmitter {
             desc = desc.replace("Z", "I");
 
             // We ignore these IO methods: read()I, write(I)V, and write(Z)V.
-            if (name.equals("read") && desc.equals("()I") || name.equals("write") && desc.equals("(I)V") ||
-                    name.equals("write") && desc.equals("(Z)V")) {
+            if (name.equals("read") && desc.equals("()I") || name.equals("write") && 
+                desc.equals("(I)V") || name.equals("write") && desc.equals("(Z)V")) {
                 continue;
             }
 
@@ -108,9 +108,6 @@ public class NEmitter {
                 cfg.writeLivenessIntervalsToStdOut(p);
                 p.println();
             }
-
-            // Handle spills (ie, generate load/store instructions where needed).
-            regAllocator.handleSpills();
 
             // Convert LIR instructions to Marvin instructions.
             cfg.lirToMarvin();

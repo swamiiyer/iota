@@ -178,8 +178,8 @@ class NBasicBlock {
             localsStr += ins != null ? cfg.hirMap.get(ins.id).id() + ", " : "?, ";
         }
         localsStr = localsStr.isEmpty() ? "[]" : "[" + localsStr.substring(0, localsStr.length() - 2) + "]";
-        p.printf("%s (pred: %s, succ: %s%s%s, locals: %s):\n", id(), predecessors.toString(), successors.toString(),
-                lh, lt, localsStr);
+        p.printf("%s (pred: %s, succ: %s%s%s, locals: %s):\n", id(), predecessors.toString(), 
+                 successors.toString(), lh, lt, localsStr);
         for (NHirInstruction instruction : hir) {
             p.printf("%s\n", cfg.hirMap.get(instruction.id));
         }
@@ -548,7 +548,7 @@ class NControlFlowGraph {
                         onTrueBlock = pcToBasicBlock.get((int) branchTuple.location);
                         onFalseBlock = pcToBasicBlock.get(branchTuple.pc + 3);
                         instruction = new NHirJump(block, hirId++, tuple.opcode == IFEQ ? IF_ICMPEQ : IF_ICMPNE,
-                                lhs, rhs, onTrueBlock, onFalseBlock);
+                                                   lhs, rhs, onTrueBlock, onFalseBlock);
                         hirMap.put(zero.id, zero);
                         block.hir.add(zero);
                         hirMap.put(instruction.id, instruction);
@@ -785,7 +785,8 @@ class NControlFlowGraph {
         exit.marvin.add(ins);
 
         // and jump to RA (ie, the caller).
-        ins = new NMarvinJump("jumpr", regInfo[RA], null, null, null, false);
+        ins = new NMarvinJump("jumpr", regInfo[RA], null, null, null, 
+                              false);
         exit.marvin.add(ins);
 
         basicBlocks.add(exit);
@@ -813,7 +814,8 @@ class NControlFlowGraph {
                 if (ins instanceof NMarvinJump) {
                     NMarvinJump jump = (NMarvinJump) ins;
                     if (jump.mnemonic.equals("jumpn")) {
-                        jump.N = jump.returnFromMethod ? exitBlock.marvin.get(0).pc : jump.trueBlock.marvin.get(0).pc;
+                        jump.N = jump.returnFromMethod ? exitBlock.marvin.get(0).pc 
+                                                       : jump.trueBlock.marvin.get(0).pc;
                     } else if (!jump.mnemonic.equals("jumpr")) {
                         jump.N = jump.trueBlock.marvin.get(0).pc;
                     }

@@ -372,10 +372,12 @@ class NLirJump extends NLirInstruction {
         NMarvinInstruction ins;
         if (trueBlock == null && falseBlock == null) {
             // Return from a method.
-            ins = new NMarvinJump(lir2Marvin.get(mnemonic), null, null, null, null, true);
+            ins = new NMarvinJump(lir2Marvin.get(mnemonic), null, null, null, null, 
+                                  true);
         } else if (falseBlock == null) {
             // Unconditional jump.
-            ins = new NMarvinJump(lir2Marvin.get(mnemonic), null, null, trueBlock, null, false);
+            ins = new NMarvinJump(lir2Marvin.get(mnemonic), null, null, trueBlock, null, 
+                                  false);
         } else {
             // Conditional jump.
             ins = new NMarvinJump(lir2Marvin.get(mnemonic), toPhysicalRegister(reads.get(0)),

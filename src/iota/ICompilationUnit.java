@@ -1,6 +1,5 @@
 package iota;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import static iota.CLConstants.ICONST_0;

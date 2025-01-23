@@ -9,7 +9,6 @@ An Ant build configuration file for the iota compiler.
     <property name="CLASS_DIR" value="out" />
     <property name="LIB_DIR" value="lib" />
     <property name="JAVADOC_DIR" value="iota-javadoc" />
-    <property name="J2H_DIR" value="iota-code" />
 
     <!-- help: Lists main targets -->
     <target name="help">
@@ -17,7 +16,6 @@ An Ant build configuration file for the iota compiler.
         <echo message="compile: Compiles the iota source files"/>
         <echo message="jar: Bundles iota classes into a jar file"/>
         <echo message="javadoc: Generates javadoc for iota classes"/>
-        <echo message="j2h: Generates browsable code using java2html"/>
         <echo message="package: Creates a distributable for iota"/>
         <echo message="clean: Removes generated files and folders"/>
     </target>
@@ -52,25 +50,11 @@ An Ant build configuration file for the iota compiler.
         </javadoc>
     </target>
 
-    <!-- j2h: Generates browsable code using java2html. -->
-    <target name="j2h">
-        <echo message="Generating browsable code for iota..."/>
-        <mkdir dir="${J2H_DIR}" />
-        <java jar="${LIB_DIR}/j2h.jar" fork="true" failonerror="true" maxmemory="128m">
-              <arg value="-m"/>
-              <arg value="4"/>
-              <arg value="-d"/>
-              <arg value="${J2H_DIR}"/>
-              <arg value="-js"/>
-              <arg value="${SRC_DIR}"/>
-       </java>
-    </target>
-
     <!-- 
        package: Makes a distributable package for the compiler which includes the sources,
        binaries, and documentation.
     -->
-    <target name="package" depends="jar,javadoc,j2h">
+    <target name="package" depends="jar,javadoc">
         <echo message="Making a distributable iota.zip..."/>
         <zip destfile="iota.zip"
              basedir="../"
@@ -82,13 +66,12 @@ An Ant build configuration file for the iota compiler.
     <target name="clean">
         <echo message="Removing generated files and folders..."/>
         <delete>
-            <fileset dir="${basedir}" includes="**/*.class"/>
+            <fileset dir="${basedir}" includes="**/*.class,**/*.marv"/>
         </delete>
         <delete file="iota.zip" />
         <delete file="${LIB_DIR}/iota.jar" />
         <delete dir="${CLASS_DIR}" />
         <delete dir="${JAVADOC_DIR}" />
-        <delete dir="${J2H_DIR}" />
     </target>
 
 </project>
