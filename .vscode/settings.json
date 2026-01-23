@@ -1,8 +1,10 @@
 {
     "editor.rulers": [120],
+    "github.copilot.enable": { "*": false },
     "files.autoSave": "afterDelay",
     "java.inlayHints.parameterNames.enabled": "none",
     "java.project.referencedLibraries": [
         "lib/iota.jar",
-    ]
+    ],
+    "workbench.startupEditor": "none",
 }
